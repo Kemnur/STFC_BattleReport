@@ -1,0 +1,117 @@
+﻿<Window x:Class="STFC_BattleReport.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:STFC_BattleReport"
+        mc:Ignorable="d"
+        Title="STFC Battle Report" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Border BorderThickness="6" CornerRadius="0,10,10,10">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="DarkGray" Offset="0"/>
+                            <GradientStop Color="DarkGray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="DarkGray" Offset="0"/>
+                            <GradientStop Color="DarkGray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <DataGrid SelectionMode="Single" RowHeaderWidth="0" BorderThickness="0" Name="damagegrid" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="Auto" Header="player" Binding="{Binding PlayerName, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="*" Header="damage done (total)" Binding="{Binding TotalDamage , UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0:n0}}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="*" Header="damage done (to Hull)" Binding="{Binding HullDamage , UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0:n0}}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="*" Header="damage taken (total)" Binding="{Binding DamageTaken , UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0:n0}}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="100" Header="hits taken" Binding="{Binding HitsTaken , UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="BorderThickness" Value="1 1 0 1"/>
+                                <Setter Property="Margin" Value="-1,-1,0,0" />
+                                <Setter Property="Height" Value="28" />
+                                <Setter Property="Width" Value="auto"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.Resources>                       
+                        
+                    </DataGrid>
+
+
+                </Border>
+            </Grid>
+            
+        </Grid>
+
+        <Grid Margin="10" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Border BorderThickness="6" CornerRadius="0,10,10,10">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="DarkGray" Offset="0"/>
+                            <GradientStop Color="DarkGray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="DarkGray" Offset="0"/>
+                            <GradientStop Color="DarkGray" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <DataGrid SelectionMode="Single" RowHeaderWidth="0" BorderThickness="0" Name="playergrid" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="Auto" Header="player" Binding="{Binding PlayerName, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="*" Header="mitigation (last hit)" Binding="{Binding Mitigation, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0:p1}}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="*" Header="piercing (last hit)" Binding="{Binding Piercing, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0:p1}}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="*" Header="percentage critical hits" Binding="{Binding CriticalHitsPercentage, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay, ValidatesOnExceptions=True, StringFormat={}{0:p0}}"></DataGridTextColumn>                            
+                        </DataGrid.Columns>
+
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="BorderThickness" Value="1 1 0 1"/>
+                                <Setter Property="Margin" Value="-1,-1,0,0" />
+                                <Setter Property="Height" Value="28" />
+                                <Setter Property="Width" Value="auto"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.Resources>
+
+                    </DataGrid>
+
+
+                </Border>
+            </Grid>
+
+        </Grid>
+
+        <Button Grid.Row="2" Click="Button_Click">analyze battle report</Button>
+    </Grid>
+</Window>
